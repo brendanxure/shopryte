@@ -44,7 +44,7 @@ public class DataSeeder implements CommandLineRunner {
         Product phone = new Product();
         phone.setName("Smartphones");
         phone.setDescription("Latest phone with good features");
-        phone.setImageUrl("https://smartphones.com/images/phone.jpg");
+        phone.setImageUrl("");
         phone.setPrice(200.00);
         phone.setCategory(electronics);
 
