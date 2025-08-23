@@ -1,6 +1,5 @@
 package com.xure.xurepify.dto;
 
-import com.xure.xurepify.model.Product;
 import lombok.Data;
 
 import java.util.Set;
@@ -9,5 +8,5 @@ import java.util.Set;
 public class CategoryDto {
     private Long id;
     private String catName;
-    private Set<Product> catProducts;
+    private Set<ProductDto> catProducts;
 }
