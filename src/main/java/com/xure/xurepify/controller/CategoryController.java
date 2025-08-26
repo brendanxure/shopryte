@@ -1,7 +1,11 @@
 package com.xure.xurepify.controller;
 
+import com.xure.xurepify.dto.CategoryDto;
+import com.xure.xurepify.dto.ProductDto;
+import com.xure.xurepify.mapper.CategoryMapper;
 import com.xure.xurepify.model.Category;
 import com.xure.xurepify.service.CategoryService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,13 +17,17 @@ import java.util.List;
 @RequestMapping("/api/categories")
 public class CategoryController {
     private final CategoryService categoryService;
+    private final CategoryMapper categoryMapper;
 
-    public CategoryController(CategoryService categoryService) {
+    public CategoryController(CategoryService categoryService, CategoryMapper categoryMapper) {
         this.categoryService = categoryService;
+        this.categoryMapper = categoryMapper;
     }
 
     @GetMapping
-    public List<Category> getAllCategories(){
-        return categoryService.getAllCategories();
+    public ResponseEntity<List<CategoryDto>> getAllCategories(){
+        List<CategoryDto> response;
+        response = categoryService.getAllCategories().stream().map(categoryMapper::toDto).toList();
+        return ResponseEntity.ok(response);
     };
 }
