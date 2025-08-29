@@ -1,7 +1,10 @@
 package com.xure.xurepify.controller;
 
+import com.xure.xurepify.dto.ProductDto;
+import com.xure.xurepify.mapper.ProductMapper;
 import com.xure.xurepify.model.Product;
 import com.xure.xurepify.service.ProductService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,14 +13,17 @@ import java.util.List;
 @RequestMapping("/api/products")
 public class ProductController {
     private final ProductService productService;
+    private final ProductMapper productMapper;
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, ProductMapper productMapper) {
         this.productService = productService;
+        this.productMapper = productMapper;
     }
 
     @GetMapping
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    public ResponseEntity<List<ProductDto>> getAllProducts() {
+        List<ProductDto> response = productService.getAllProducts().stream().map(productMapper::toDto).toList();
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/category/{categoryId}")
