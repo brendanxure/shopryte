@@ -28,6 +28,7 @@ public class ProductController {
 
     @GetMapping("/category/{categoryId}")
     public  ResponseEntity<List<ProductDto>> getProductByCategoryId(@PathVariable Long categoryId) {
-        return productService.getProductByCategory(categoryId);
+        List<ProductDto> response = productService.getProductByCategory(categoryId).stream().map(productMapper::toDto).toList();
+        return ResponseEntity.ok(response);
     }
 }
