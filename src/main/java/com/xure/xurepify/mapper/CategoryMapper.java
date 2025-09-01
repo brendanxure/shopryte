@@ -15,6 +15,7 @@ public interface CategoryMapper {
     // DTO -> Entity
     @Mapping(target = "name", source = "catName")
     @Mapping(target = "products", source = "catProducts")
+    @Mapping(target = "id", ignore = true)
     Category toEntity(Category category);
 }
 

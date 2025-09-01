@@ -6,10 +6,8 @@ import com.xure.xurepify.mapper.CategoryMapper;
 import com.xure.xurepify.model.Category;
 import com.xure.xurepify.service.CategoryService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -29,5 +27,11 @@ public class CategoryController {
         List<CategoryDto> response;
         response = categoryService.getAllCategories().stream().map(categoryMapper::toDto).toList();
         return ResponseEntity.ok(response);
+    };
+
+    @PostMapping
+    public ResponseEntity<CategoryDto> createCategories(@RequestBody CategoryDto data){
+
+        return ResponseEntity.ok(data);
     };
 }
