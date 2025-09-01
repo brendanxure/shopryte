@@ -30,8 +30,10 @@ public class CategoryController {
     };
 
     @PostMapping
-    public ResponseEntity<CategoryDto> createCategories(@RequestBody CategoryDto data){
+    public ResponseEntity<CategoryDto> createCategories(@RequestBody CategoryDto categoryDto){
+        categoryDto.setId(null);
 
-        return ResponseEntity.ok(data);
+        Category category = categoryMapper.toEntity(categoryDto);
+        return ResponseEntity.ok(categoryDto);
     };
 }
