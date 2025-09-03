@@ -1,5 +1,6 @@
 package com.xure.xurepify.service;
 
+import com.xure.xurepify.dto.CategoryDto;
 import com.xure.xurepify.model.Category;
 import com.xure.xurepify.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
@@ -17,5 +18,9 @@ public class CategoryService {
 
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
+    }
+
+    public Category postCategory(Category category) {
+        return categoryRepository.save(category);
     }
 }

@@ -34,6 +34,7 @@ public class CategoryController {
         categoryDto.setId(null);
 
         Category category = categoryMapper.toEntity(categoryDto);
+        Category savedCategory = categoryRepository.save(category);
         return ResponseEntity.ok(categoryDto);
     };
 }
