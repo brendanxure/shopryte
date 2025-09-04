@@ -1,7 +1,9 @@
 package com.xure.xurepify.controller;
 
+import com.xure.xurepify.dto.CategoryDto;
 import com.xure.xurepify.dto.ProductDto;
 import com.xure.xurepify.mapper.ProductMapper;
+import com.xure.xurepify.model.Category;
 import com.xure.xurepify.model.Product;
 import com.xure.xurepify.service.ProductService;
 import org.springframework.http.ResponseEntity;
@@ -31,4 +33,9 @@ public class ProductController {
         List<ProductDto> response = productService.getProductByCategory(categoryId).stream().map(productMapper::toDto).toList();
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping
+    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto){
+
+    };
 }
