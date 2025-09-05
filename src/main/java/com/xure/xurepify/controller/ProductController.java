@@ -36,6 +36,8 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto){
+        productDto.setId(null);
+
 
     };
 }
