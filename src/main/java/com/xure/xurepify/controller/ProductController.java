@@ -38,6 +38,7 @@ public class ProductController {
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto){
         productDto.setId(null);
 
+        Product product = productMapper.toEntity(productDto);
 
     };
 }
