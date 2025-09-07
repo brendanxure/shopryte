@@ -1,5 +1,6 @@
 package com.xure.xurepify.service;
 
+import com.xure.xurepify.model.Category;
 import com.xure.xurepify.model.Product;
 import com.xure.xurepify.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -20,5 +21,9 @@ public class ProductService {
 
     public List<Product> getProductByCategory(Long id) {
         return productRepository.findByCategoryId(id);
+    }
+
+    public Product postProduct(Product product) {
+        return productRepository.save(product);
     }
 }
