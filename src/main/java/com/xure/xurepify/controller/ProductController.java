@@ -40,7 +40,7 @@ public class ProductController {
 
         Product product = productMapper.toEntity(productDto);
         Product savedProduct = productService.postProduct(product);
-//        categoryDto.setId(savedCategory.getId());
-//        return ResponseEntity.ok(categoryDto);
+        productDto.setId(savedProduct.getId());
+        return ResponseEntity.ok(categoryDto);
     };
 }
