@@ -23,4 +23,8 @@ public class CategoryService {
     public Category postCategory(Category category) {
         return categoryRepository.save(category);
     }
+
+    public Category getCategoryById(long categoryId) {
+        return categoryRepository.findById(categoryId).orElseThrow(() -> new RuntimeException("Category not found with id " + categoryId));
+    }
 }

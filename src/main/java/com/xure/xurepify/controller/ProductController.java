@@ -5,6 +5,7 @@ import com.xure.xurepify.dto.ProductDto;
 import com.xure.xurepify.mapper.ProductMapper;
 import com.xure.xurepify.model.Category;
 import com.xure.xurepify.model.Product;
+import com.xure.xurepify.service.CategoryService;
 import com.xure.xurepify.service.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +17,12 @@ import java.util.List;
 public class ProductController {
     private final ProductService productService;
     private final ProductMapper productMapper;
+    private final CategoryService categoryService;
 
-    public ProductController(ProductService productService, ProductMapper productMapper) {
+    public ProductController(ProductService productService, ProductMapper productMapper, CategoryService categoryService) {
         this.productService = productService;
         this.productMapper = productMapper;
+        this.categoryService = categoryService;
     }
 
     @GetMapping
@@ -37,8 +40,11 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto){
         productDto.setId(null);
+        System.out.println(productDto);
 
         Product product = productMapper.toEntity(productDto);
+        Category category = categoryService.getCategoryById(productDto.getCategoryDto().getId());
+        product.setCategory(category);
         Product savedProduct = productService.postProduct(product);
         productDto.setId(savedProduct.getId());
         return ResponseEntity.ok(productDto);
